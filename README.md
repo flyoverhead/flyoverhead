@@ -1,78 +1,32 @@
 # Aleksandr Letunov
 
-**Platform / Infrastructure Engineer** — I build the platform other engineers ship on.
+**Platform Engineering Lead · IaC, DevSecOps & AI for infrastructure.** I build the platform other
+engineers ship on, make it secure by default, and make it work with AI agents.
 
-Currently the largest contributor across a 600-repository infrastructure estate, where I own
-the internal developer platform end to end: reusable CI components, Ansible roles, Terraform
-modules, and the Go services that tie them together.
+- **Platform.** Largest contributor to an organisation-wide IaC platform behind ~680 repositories:
+  21 GitLab CI/CD components I created, 18 containerised CI execution environments, ~25
+  config-driven Terraform modules, ~80 Ansible roles (~47 with Molecule tests), golden images, and
+  ~20,000 lines of Go tooling. A shared CI base image cut builds from ~15–20 min to ~7–10 min.
+- **Security by default.** Rolling out least-privilege CI identity in HashiCorp Vault: short-lived
+  per-role tokens and read-only twins for merge-request runs, proven by a deny-matrix harness.
+  Images, Helm charts and GitOps artifacts are signed with cosign through Vault transit, with SBOMs.
+- **AI-operable infrastructure.** I built my team's Claude Code plugin marketplace (11 plugins,
+  58 eval suites gating every release) and drove a shared knowledge corpus that lets agents work
+  to our conventions. Terraform modules now take days instead of weeks.
 
-## What I work on
+## Public work
 
-### Internal developer platform
+| Repository | What |
+|---|---|
+| [docker](https://github.com/flyoverhead/docker) | Ansible collection for Docker services |
+| [server](https://github.com/flyoverhead/server) | Ansible collection for server baseline: SSH, firewall, systemd, fail2ban |
+| [k3s](https://github.com/flyoverhead/k3s) | Ansible collection for k3s clusters |
+| [macos](https://github.com/flyoverhead/macos) | Workstation as code, including Claude Code configuration |
+| [terraform-proxmox-compute](https://github.com/flyoverhead/terraform-proxmox-compute) | Config-driven Terraform module for Proxmox VE |
+| [video-summary](https://github.com/flyoverhead/video-summary) | Claude Code plugin with agents that turns camera footage into a summary video |
 
-~20 reusable GitLab CI components, 100+ Ansible roles, Terraform modules, and containerised
-CI execution environments. Standardising the build layer cut pipeline times from 15–20
-minutes to 7–10.
+Stack: Terraform / OpenTofu · Ansible · Kubernetes · Helm · Flux · GitLab CI · HashiCorp Vault ·
+cosign · Go · Python · OpenStack · VMware · AWS · Prometheus / Grafana · Claude Code · MCP
 
-### Go services for infrastructure
-
-- **Artifactory / Nexus uploaders** — mirror external packages into internal artifact
-  repositories. Worker-pool parallelism, SHA256 verification on download and upload, checksum
-  dedup and drift detection, template expansion across versions × OS × arch, orphan cleanup,
-  backoff retry, multi-platform images. Python → Go rewrite took a pipeline stage from 2–3 min
-  to 30 s.
-- **gitlab-deps** — CLI and web service detecting dependency drift estate-wide: resolve the
-  latest tag per dependency repo, parse each project's `requirements.yml`, `.gitlab-ci.yml`
-  and `*.tf`, diff used against available. Covers Ansible roles and collections, CI components
-  and Terraform modules — each declared in a different format, sometimes across several
-  registries. Cut ~1 hr/week per engineer of version-chasing to 5–10 min.
-- **cihelper** — CI utility belt: git file and YAML-key diffing, Ansible tag filtering for
-  targeted deploys, Terraform provider fetching, Vault secrets, artifact handling, MR
-  discussions, cloud-platform detection.
-- Also a load-balancer fleet-management API (day-long review workflow → one authenticated API
-  call), a registry cleaner, a token rotator, and an L2 EVPN agent.
-
-### AI-assisted infrastructure engineering
-
-Internal Claude Code tooling — two plugin marketplaces and a workflow framework.
-
-- **IaC toolkit** — 12 composable plugins, 18 skills, ~20 slash commands: Ansible roles,
-  Terraform modules and providers, Go, API design (OpenAPI 3.1 / OWASP), GitLab CLI, project
-  scaffolding, pre-commit, upgrade-safety analysis via MCP, container CVE auditing,
-  environment bootstrap. A shared context layer loads first, a shared validation gate runs
-  last.
-- **Agent marketplace** — 131 specialised subagents across 11 domains.
-- **Infra Powers** — agentic framework for infrastructure change, ported from
-  [obra/superpowers](https://github.com/obra/superpowers). Inventory and declared config are
-  the sources of truth; live systems are evidence, never a place to author change. 14 skills,
-  tiered: recon computes three-way drift and classifies Standard / Normal / Emergency; Normal
-  adds a design gate and adversarial fresh-context review; execution re-checks the diff per
-  step; nothing closes until inventory, git and live agree. Enforced by hooks, with runbooks
-  and tests.
-
-Together: Terraform module delivery weeks → days, Ansible roles a week → a day.
-
-## Stack
-
-`Go` `TypeScript` `Python` `Bash` `PowerShell`
-
-`Kubernetes` `Talos` `Helm` `Flux` `Docker` `Terraform / OpenTofu` `Ansible` `Packer`
-
-`OpenStack` `Ceph` `Vault` `Harbor` `Keycloak` `PostgreSQL / Patroni` `HAProxy`
-
-`Prometheus` `Grafana` `OpenSearch` `NetBox` `BGP / FRR` `OVN` `PowerDNS` `GitLab CI`
-
-## Selected repositories
-
-- **[ansible-openwrt](https://github.com/flyoverhead/ansible-openwrt)** — Ansible collection
-  for configuring OpenWrt devices with no Python on the target.
-- **[kubernetes-homelab](https://github.com/flyoverhead/kubernetes-homelab)** — multi-master
-  Kubernetes built with kubeadm, Ansible, Helm and Terraform.
-- **[docker](https://github.com/flyoverhead/docker)** — Ansible collection for deploying and
-  configuring containerised services.
-- **[homelab](https://github.com/flyoverhead/homelab)** — infrastructure-as-code Kubernetes
-  deployment for microservices and network research.
-
-Before infrastructure I spent a decade in analytics and management, including five years in
-AML/CFT compliance and running two businesses of my own — which is why I think about platform
-work in terms of the time it gives other people back.
+[flyoverhead.github.io](https://flyoverhead.github.io) ·
+[LinkedIn](https://www.linkedin.com/in/aleksandr-letunov-89427314b/)
