@@ -10,9 +10,12 @@ engineers ship on, make it secure by default, and make it work with AI agents.
 - **Security by default.** Rolling out least-privilege CI identity in HashiCorp Vault: short-lived
   per-role tokens and read-only twins for merge-request runs, proven by a deny-matrix harness.
   Images, Helm charts and GitOps artifacts are signed with cosign through Vault transit, with SBOMs.
-- **AI-operable infrastructure.** I built my team's Claude Code plugin marketplace (11 plugins,
-  58 eval suites gating every release) and drove a shared knowledge corpus that lets agents work
-  to our conventions. Terraform modules now take days instead of weeks.
+- **AI-operable infrastructure.** I built my team's Claude Code plugin marketplace (13 plugins,
+  81 eval suites gating every release), including security plugins that reproduce CI scanners
+  locally and fix Vulnerability Report findings, and drove a shared knowledge corpus that lets
+  agents work to our conventions. Terraform modules now take days instead of weeks. In the open,
+  [devops-plugins](https://github.com/flyoverhead/devops-plugins) ships 22 plugins (42 skills,
+  21 agents, 113 evals) for Ansible, Terraform and Go work and evidence-driven security review.
 
 ## Public work
 
@@ -23,10 +26,11 @@ engineers ship on, make it secure by default, and make it work with AI agents.
 | [k3s](https://github.com/flyoverhead/k3s) | Ansible collection for k3s clusters |
 | [macos](https://github.com/flyoverhead/macos) | Workstation as code, including Claude Code configuration |
 | [terraform-proxmox-compute](https://github.com/flyoverhead/terraform-proxmox-compute) | Config-driven Terraform module for Proxmox VE |
+| [devops-plugins](https://github.com/flyoverhead/devops-plugins) | Claude Code plugin marketplace: Ansible, Terraform and Go authoring; differential review, false-positive triage, variant analysis, Semgrep rules, regression hunting and proven bug patches |
 | [video-summary](https://github.com/flyoverhead/video-summary) | Claude Code plugin with agents that turns camera footage into a summary video |
 
 Stack: Terraform / OpenTofu · Ansible · Kubernetes · Helm · Flux · GitLab CI · HashiCorp Vault ·
-cosign · Go · Python · OpenStack · VMware · AWS · Prometheus / Grafana · Claude Code · MCP
+cosign · Go · Python · OpenStack · VMware · AWS · Prometheus / Grafana · Semgrep / CodeQL · Claude Code · MCP
 
 [flyoverhead.github.io](https://flyoverhead.github.io) ·
 [LinkedIn](https://www.linkedin.com/in/aleksandr-letunov-89427314b/)
